@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./css/style.css">
+  <title>Text Parser</title>
+</head>
+
+<body>
+  <div class="wrapper">
+    <div class="content">
+      <h2>Text Parser</h2>
+      <textarea class="textarea" name="" id=""></textarea>
+      <div class="textarea-undername">
+        Insert text or upload a text file
+      </div>
+      <input type="file" name="" id="">
+      <div class="analyz-button">
+        Analyze
+      </div>
+      <div class="results">
+        <div class="result-block">
+          <input class="input-checkbox" type="checkbox" name="" id="sentences">
+          <label class="result-name" for="sentences">Sentences</label>
+          <div class="block-body sentences-body">
+            <div class="sentence">
+              <p>1. qwdqwdqwd</p>
+              <span class="sentence-info">words: 123, letters: 213</span>
+            </div>
+          </div>
+        </div>
+        <div class="result-block">
+          <input class="input-checkbox" type="checkbox" name="" id="words">
+          <label class="result-name" for="words">Words</label>
+          <div class="block-body words-body">
+            <div class="word">
+              <p></p>
+            </div>
+          </div>
+        </div>
+        <div class="result-block">
+          <input class="input-checkbox" type="checkbox" name="" id="symbols">
+          <label class="result-name" for="symbols">Symbols</label>
+          <div class="block-body">
+            qwdqwdqwdq
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script type="module" src="./js/parser.js" ></script>
+  <script type="module" src="./js/script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,116 @@
+* {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: sans-serif;
+  background: #3a3f50;
+}
+
+.wrapper {
+  padding: 100px 20vw;
+}
+
+.content {
+  color: #d8d8d8;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 15px;
+  padding: 20px 50px;
+  background: #2c303d;
+  box-shadow: 0 4px 16px -4px #0000007d;
+}
+
+.textarea {
+  color: #d8d8d8;
+  padding: 5px;
+  border-radius: 10px;
+  font-size: 15px;
+  border: 1px solid #252b3f;
+  margin: 5px 0px 5px 0px;
+  background-color: #3a3f50;
+  width: 800px;
+  height: 240px;
+  resize: none;
+}
+
+.textarea-undername {
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.analyz-button {
+  font-size: 18px;
+  cursor: pointer;
+  margin: 10px 0px 10px 0px;
+  color: #dfdfdf;
+  padding: 10px 35px;
+  border-radius: 15px;
+  background-color: #3a3f50;
+}
+
+.analyz-button:hover {
+  background-color: #252b3f;
+}
+
+.results {
+  width: 100%;
+}
+
+.results-block {
+  text-align: left;
+}
+
+.block-body {
+  display: none;
+  padding: 10px;
+}
+
+.input-checkbox {
+  display: none;
+}
+
+.input-checkbox:checked + .result-name::after {
+  rotate: 180deg;
+}
+
+.input-checkbox:checked +.result-name + .block-body {
+  display: block;
+}
+
+.result-name {
+  cursor: pointer;
+  font-size: 21px;
+}
+
+.result-name::after {
+  content: "";
+  border: solid #ffffff;
+  border-width: 0 2px 2px 0;
+  display: inline-block;
+  padding: 3px;
+  margin-bottom: 2px;
+  margin-left: 4px;
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  transition: rotate 0.2s;
+}
+
+.result-name:hover::after {
+  rotate: 180deg;
+}
+
+.sentence,
+.word {
+  font-size: 19px;
+  line-height: 1.6;
+}
+
+.sentence-info,
+.word-info {
+  color: #bbbbbb
+}
