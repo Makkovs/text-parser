@@ -105,12 +105,14 @@ body {
 }
 
 .sentence,
-.word {
+.word,
+.symbols-body {
   font-size: 19px;
   line-height: 1.6;
 }
 
 .sentence-info,
-.word-info {
+.word-info,
+.symbol-info {
   color: #bbbbbb
 }

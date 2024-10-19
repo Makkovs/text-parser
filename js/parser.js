@@ -7,13 +7,13 @@ export class Parser {
   }
 
   parse (text) {
-    this.sentences = [];
-    this.words = [];
-    this.symbols = [];
     if (!text){
       return
     }
-
+    this.sentences = [];
+    this.words = [];
+    this.symbols = [];
+    
     let sentence = "";
     let sentenceWordAmount = 0;
     let word = "";
@@ -67,10 +67,15 @@ export class Parser {
         sentenceWordAmount = 0;
       }
     }
-    this.words.sort((a, b) => b.uses - a.uses)
+    this.words.sort((a, b) => b.uses - a.uses);
+    this.symbols.sort((a, b) => b.uses - a.uses);
   }
 
   getWordsAmount () {
     return this.words.reduce((acc, word) => acc + word.uses, 0);
+  }
+
+  getSymbolsAmount () {
+    return this.symbols.reduce((acc, symbol) => acc + symbol.uses, 0);
   }
 }
