@@ -21,7 +21,7 @@ export class Parser {
     for (let i = 0; i < text.length; i++) {
       const letter = text[i];
       const lowerLetter = letter.toLowerCase();
-      const isUpperCase = letter === lowerLetter;
+      const isLastLetter = (i + 1) >= text.length;
 
       const findedSymbol = this.symbols.find(symbol => symbol.symbol === lowerLetter);
       if (findedSymbol){
@@ -34,7 +34,7 @@ export class Parser {
         this.symbols.push(symbolObj);
       }
 
-      if (/[:;.?!, ]/.test(lowerLetter) && word.length > 0){
+      if ((/[:;.?!, ]/.test(lowerLetter) || isLastLetter) && word.length > 0){
         sentenceWordAmount++;
         word = word.trim()
         const findedWord = this.words.find(wordf => wordf.word === word);;
@@ -55,7 +55,7 @@ export class Parser {
       
       sentence += letter;
 
-      if (/[.?!]/.test(letter) && isUpperCase){
+      if (/[.?!]/.test(letter) || isLastLetter){
         const sentenceLetters = sentence.replace(/[^\p{L}]/gu, '').length;
         const sentenceObj = {
           sentence: sentence.trim(),

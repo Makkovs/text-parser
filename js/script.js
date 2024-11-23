@@ -35,7 +35,11 @@ function generateWordsHTML (words = parser.words, wordsAmount = parser.getWordsA
 }
 
 function generateSymbolsHTML (symbols = parser.symbols, symbolsAmount = parser.getSymbolsAmount()) {
-  symbols.find(symbol => symbol.symbol === " ").symbol = "space( )"
+  const spaceSymbol = symbols.find(symbol => symbol.symbol === " ")
+  if (spaceSymbol) {
+    spaceSymbol.symbol = "space( )";
+  }
+
   let symbolsHTML = `Symbols amount: ${symbolsAmount} (unique symbols: ${symbols.length})`
   for (let i = 0; i < symbols.length; i++) {
     symbolsHTML += `
@@ -43,7 +47,7 @@ function generateSymbolsHTML (symbols = parser.symbols, symbolsAmount = parser.g
           <p>${i + 1}. ${symbols[i].symbol}</p>
           <span class="symbol-info">This symbol was used: ${symbols[i].uses} times</span>
         </div>
-        `
+        `;
   }
   return symbolsHTML;
 }
