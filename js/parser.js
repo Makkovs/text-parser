@@ -34,7 +34,7 @@ export class Parser {
         this.symbols.push(symbolObj);
       }
 
-      if (/[.?!, ]/.test(lowerLetter) && word.length > 0){
+      if (/[:;.?!, ]/.test(lowerLetter) && word.length > 0){
         sentenceWordAmount++;
         word = word.trim()
         const findedWord = this.words.find(wordf => wordf.word === word);;

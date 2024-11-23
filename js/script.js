@@ -3,12 +3,13 @@ import { Parser } from "./parser.js";
 const parser = new Parser();
 const analyzButton = document.querySelector(".analyz-button");
 const input = document.querySelector(".textarea");
+const fileInput = document.querySelector(".file-input");
 
 const sentencesBody = document.querySelector(".sentences-body");
 const wordsBody = document.querySelector(".words-body");
 const symbolsBody = document.querySelector(".symbols-body");
 
-function generateSentencesHTML (sentences) {
+function generateSentencesHTML (sentences = parser.sentences) {
   let sentencesHTML = `Sentences amount: ${sentences.length}`;
   for (let i = 0; i < sentences.length; i++) {
     sentencesHTML += `
@@ -20,7 +21,7 @@ function generateSentencesHTML (sentences) {
   return sentencesHTML;
 }
 
-function generateWordsHTML (words, wordsAmount) {
+function generateWordsHTML (words = parser.words, wordsAmount = parser.getWordsAmount()) {
   let wordsHTML = `Words amount: ${wordsAmount} (unique words: ${words.length})`;
   for (let i = 0; i < words.length; i++) {
     wordsHTML += `
@@ -33,7 +34,7 @@ function generateWordsHTML (words, wordsAmount) {
   return wordsHTML;
 }
 
-function generateSymbolsHTML (symbols, symbolsAmount) {
+function generateSymbolsHTML (symbols = parser.symbols, symbolsAmount = parser.getSymbolsAmount()) {
   symbols.find(symbol => symbol.symbol === " ").symbol = "space( )"
   let symbolsHTML = `Symbols amount: ${symbolsAmount} (unique symbols: ${symbols.length})`
   for (let i = 0; i < symbols.length; i++) {
@@ -47,19 +48,29 @@ function generateSymbolsHTML (symbols, symbolsAmount) {
   return symbolsHTML;
 }
 
-analyzButton.addEventListener("click", () => {
-  const text = input.value;
-
+function parseAndDisplay (text) {
   parser.parse(text);
-  const { sentences, words, symbols } = parser;
-  const wordsAmount = parser.getWordsAmount();
-  const symbolsAmount = parser.getSymbolsAmount();
-
-  const sentencesHTML = generateSentencesHTML(sentences);
-  const wordsHTML = generateWordsHTML(words, wordsAmount);
-  const symbolsHTML = generateSymbolsHTML(symbols, symbolsAmount);
+  const sentencesHTML = generateSentencesHTML();
+  const wordsHTML = generateWordsHTML();
+  const symbolsHTML = generateSymbolsHTML();
 
   sentencesBody.innerHTML = sentencesHTML;
   wordsBody.innerHTML = wordsHTML;
   symbolsBody.innerHTML = symbolsHTML;
-})
+}
+
+analyzButton.addEventListener("click", () => {
+  let text;
+  const textFile = fileInput.files[0];
+  if (!textFile){
+    text = input.value;
+    parseAndDisplay(text);
+  }else {
+    const reader = new FileReader();
+    reader.readAsText(textFile, "utf-8");
+    reader.onload = () => {
+      text = reader.result;
+      parseAndDisplay(text);
+    }
+  }
+});
